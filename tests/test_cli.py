@@ -153,5 +153,11 @@ class TestCLI(unittest.TestCase):
         self.assertLess(r.stdout.index('"a"'), r.stdout.index('"b"'))
 
 
+    def test_keys_sort(self):
+        r = self.run_jtool("keys", "--sort", input_text='{"b":1,"a":2}')
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertEqual(r.stdout.split(), ["a", "b"])
+
+
 if __name__ == "__main__":
     unittest.main()
